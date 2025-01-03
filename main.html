@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin flip </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- make the coin using coin image-->
+         <div class="coin" id ="coin">
+
+            <!--head image-->
+            <div class="heads">
+                <img src="coin_img/coinhead.jpg" alt="">
+            </div>
+            <!--tail image-->
+            <div class="tails">
+                <img src="coin_img/cointail.jpg" alt="">
+            </div>
+         </div>
+        <!-- Now make a display to view stats-->
+
+        <div class="stats">
+            <p id="heads-count">Heads: 0</p>
+        
+            <p id="tails-count">Tails: 0 </p>
+        </div>
+
+        <!--- Now make 2 buttons-->
+        <div class="button">
+            <button id="flip-button"> Flip Coin</button>
+            <button id="reset-button">Reset Coin</button>
+        </div>
+    </div>
+
+    <!-- now active the flip coin game-->
+
+    <script type="text/javascript">
+        // set constant of some id and class functions
+
+        let coin = document.querySelector(".coin");
+        let flipBtn = document.querySelector('#flip-button');
+        let resetBtn = document.querySelector('#reset-button');
+
+        // Now take the value of head and tail to Zero
+
+        let heads = 0;
+        let tails = 0;
+
+        flipBtn.addEventListener("click",()=>{
+            // all the values  i have to store in i
+            // Math.random is a javascript method that randomly set a value among many values.
+
+            let i = Math.floor(Math.random() * 2);
+
+            coin.style.animation = "none";
+
+
+            if(i){
+                setTimeout(function(){
+                    coin.style.animation = "spin-heads 3s forwards";
+                },100);
+                heads++;
+            }
+            else{
+                setTimeout(function(){
+                    coin.style.animation = "spin-tails 3s forwards";
+                },100);
+                tails++;
+            }
+            setTimeout(updateStats,3000); // 1 second = 1000 miliseconds
+            disableButton();
+        });
+
+        //have activated the counter
+
+        function updateStats(){
+            document.querySelector("#heads-count").textContent = `Heads: ${heads}`;
+            document.querySelector("#tails-count").textContent = `Tails: ${tails}`;
+        }
+
+        // activate the disable button
+        // when the coin flips, the 'flip button' will go into disable mode.
+
+        function disableButton(){
+            flipBtn.disabled = true ;
+            setTimeout(function(){
+                flipBtn.disabled = false;
+            },3000);
+        }
+
+        // Activate the reset button
+        resetBtn.addEventListener("click",() =>{
+            coin.style.animation = "none";
+            tails = 0;
+            heads = 0;
+            updateStats();
+        });
+
+
+
+    </script>
+    
+</body>
+</html>

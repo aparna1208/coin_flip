@@ -1,0 +1,96 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+   height: 100%;
+   background:rgb(35, 36, 53);
+}
+.container{
+   background: #ffffff;
+   width: 400px;
+   padding: 35px;
+   margin: 100px auto;
+   border-radius: 20px;
+   box-shadow: 15px 30px 35px rgba(0,0,0,0.1);
+}
+.coin{
+   height: 150px;
+   width: 150px;
+   position: relative;
+   margin: 32px auto;
+   transform-style: preserve-3d;
+}
+.coin img{
+   width: 100%;
+}
+.heads, .tails{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   backface-visibility: hidden;
+}
+.tails{
+   transform: rotateX(180deg);
+}
+@keyframes spin-tails{
+   0%{
+       transform: rotateX(0);
+   }
+   100%{
+       transform: rotateX(1980deg);  /* 1980 + 180 = 2160 */ 
+   }
+}
+
+@keyframes spin-heads{
+   0%{
+       transform: rotateX(0);
+   }
+   100%{
+       transform: rotateX(2160deg); 
+   }
+}
+
+.stats{
+ display: flex;
+ color: #101020;
+ font-weight: 500;
+ padding: 20px;
+ margin-top: 55px;
+ margin-bottom: 40px;
+ box-shadow: 0 0 20px rgba(0,139,253,0.25);  
+}
+
+.stats p:nth-last-child(1){
+   margin-left: 50%;
+}
+
+.button{
+  display: flex;
+  justify-content: space-between; 
+}
+
+button{
+  width: 150px;
+  padding: 11px 0; 
+  border: none;
+  font-size: 15px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+#flip-button{
+   background-color: #191243;
+   color: white;
+}
+#flip-button:disabled{
+   background: #bec8ca;
+   border-color: #bec8ca;
+   color: #101020;
+
+}
+#reset-button{
+   background-color: #7d7610;
+   color: white;
+}
